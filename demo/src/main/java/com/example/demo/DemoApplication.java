@@ -2,7 +2,6 @@ package com.example.demo;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
-import java.util.*;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
