@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.ICustomerDao" >
+   <sql id="searchCondition">
+     <trim prefix="where" suffixOverrides="AND">
+       <if test="vo.name !=null ">
+           fname like #{vo.name,jdbcType=VARCHAR}
+       </if>
+        <if test="vo.number !=null ">
+           fnumber like '%'||#{vo.number,jdbcType=VARCHAR}||'%'
+       </if>
+        <if test="vo.address !=null ">
+           faddress like '%'||#{vo.address,jdbcType=VARCHAR}
+       </if>
+       <if test="vo.contcator !=null ">
+           fcontcator like '%'||#{vo.contcator,jdbcType=VARCHAR}
+       </if>
+        <if test="vo.contcatPhone !=null ">
+           fcontcatphone like '%'||#{vo.contcatPhone,jdbcType=VARCHAR}
+       </if>
+     </trim>
+   </sql>
+   <select id="findAllCustomer" resultType="com.example.demo.vo.CustomerVO">
+      select 
+        fid id,
+        fname name,
+        fnumber number,
+        faddress address,
+        fcontcator contcator,
+        fcontcatphone contcatPhone
+      from t_bas_customer
+      <include refid="searchCondition"></include>
+   </select>
+   <insert id="save" parameterType="com.example.demo.vo.CustomerVO">
+      insert into t_bas_customer
+      (
+	      fid,
+	      fname,
+	      fnumber,
+	      faddress,
+	      fcontcator,
+	      fcontcatphone)
+      values
+      (
+	       #{vo.id,jdbcType=VARCHAR},
+	       #{vo.name,jdbcType=VARCHAR},
+	       #{vo.number,jdbcType=VARCHAR},
+	       #{vo.address,jdbcType=VARCHAR},
+	       #{vo.contcator,jdbcType=VARCHAR},
+	       #{vo.contcatPhone,jdbcType=VARCHAR}
+       )
+   </insert>
+   <update id="updateCustomer" parameterType="com.example.demo.vo.CustomerVO">
+      update t_bas_customer
+      <trim prefix="SET" suffixOverrides=",">
+	       <if test="vo.name !=null">fname=#{vo.name},</if>
+	       <if test="vo.number !=null">fnumber=#{vo.number},</if>
+	       <if test="vo.address !=null">faddress=#{vo.address},</if>
+	       <if test="vo.contcator !=null">fcontcator=#{vo.contcator},</if>
+	       <if test="vo.contcatPhone !=null">fcontcatphone=#{vo.contcatPhone}</if>
+      </trim>
+      where fid=#{vo.id,jdbcType=VARCHAR} 
+   </update>
+</mapper>
