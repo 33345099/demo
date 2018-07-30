@@ -151,6 +151,11 @@
 				<groupId>maven-plugins</groupId>
 				<artifactId>maven-findbugs-plugin</artifactId>
 				<version>1.4</version>
+				<configuration>
+					<findbugsXmlOutput>true</findbugsXmlOutput>
+					<findbugsXmlWithMessages>true</findbugsXmlWithMessages>
+					<xmlOutput>true</xmlOutput>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
