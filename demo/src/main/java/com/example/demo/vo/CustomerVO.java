@@ -1,7 +1,9 @@
 package com.example.demo.vo;
 
 public class CustomerVO {
-	
+	/**
+	 * 
+	 */
 	private String id;
 	private String name;
 	private String number;
