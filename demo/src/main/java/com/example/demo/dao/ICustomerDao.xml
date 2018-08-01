@@ -3,6 +3,15 @@
 <mapper namespace="com.example.demo.dao.ICustomerDao" >
    <sql id="searchCondition">
      <trim prefix="where" suffixOverrides="AND">
+     
+       <choose>
+         <when test="vo.isEnabled != null">
+            fisenabled = #{vo.isEnabled,jdbcType=NUMERIC}
+         </when>
+         <otherwise>
+           fisenabled = 1
+         </otherwise>
+       </choose>
        <if test="vo.name !=null ">
            fname like #{vo.name,jdbcType=VARCHAR}
        </if>
@@ -27,7 +36,8 @@
         fnumber number,
         faddress address,
         fcontcator contcator,
-        fcontcatphone contcatPhone
+        fcontcatphone contcatPhone,
+        fisenabled isenabled
       from t_bas_customer
       <include refid="searchCondition"></include>
    </select>
@@ -61,4 +71,15 @@
       </trim>
       where fid=#{vo.id,jdbcType=VARCHAR} 
    </update>
+   <select id="getCustomerById" resultType="com.example.demo.vo.CustomerVO">
+      select 
+        fid id,
+        fname name,
+        fnumber number,
+        faddress address,
+        fcontcator contcator,
+        fcontcatphone contcatPhone
+      from t_bas_customer 
+      where fid = #{id,jdbcType=VARCHAR}
+   </select>
 </mapper>
