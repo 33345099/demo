@@ -10,11 +10,6 @@ public class DemoApplication {
 
 	public static void main(String[] args) {
 		
-		String a = null;
-		a.toString();
-		
-		Object a1 = null;
-		a1.hashCode();
 		SpringApplication.run(DemoApplication.class, args);
 	}
 }

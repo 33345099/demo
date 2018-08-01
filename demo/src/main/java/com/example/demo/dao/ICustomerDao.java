@@ -11,4 +11,5 @@ public interface ICustomerDao {
 	List<CustomerVO> findAllCustomer(@Param(value = "vo")CustomerVO vo);
 	void save(@Param(value = "vo")CustomerVO vo);
 	void updateCustomer(@Param(value = "vo")CustomerVO vo);
+	CustomerVO getCustomerById(@Param(value="id") String id);
 }

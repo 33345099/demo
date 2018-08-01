@@ -10,6 +10,14 @@ public class CustomerVO {
 	private String address;
 	private String contcator;
 	private String contcatPhone;
+	private boolean isEnabled;
+	
+	public boolean isEnabled() {
+		return isEnabled;
+	}
+	public void setEnabled(boolean isEnabled) {
+		this.isEnabled = isEnabled;
+	}
 	public String getId() {
 		return id;
 	}
